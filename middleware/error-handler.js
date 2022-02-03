@@ -12,7 +12,13 @@ const errorHandlerMiddleware = (err, req, res, next) => {
       .map((item) => item.message)
       .join(',');
   }
+
+  if (err.code && err.code === 11000) {
+    defaultError.statusCode = StatusCodes.BAD_REQUEST;
+    defaultError.msg = ` ${Object.keys(err.keyValue)} already exists`;
+  }
   res.status(defaultError.statusCode).json({ msg: defaultError.msg });
+  // res.status(defaultError.statusCode).json({ msg: err });
 };
 
 export default errorHandlerMiddleware;
