@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
   res.send('Welcome!');
 });
 
+app.get('/api/v1', (req, res) => {
+  res.send('Welcome!');
+});
+
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/jobs', jobsRouter);
 
