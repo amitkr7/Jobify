@@ -103,6 +103,9 @@ const AppProvider = ({ children }) => {
     removeUserFromLocalStorage();
   };
 
+  const updateUser = (currentUser) => {
+    console.log(currentUser);
+  };
   const toggleSidebar = () => {
     dispatch({ type: TOGGLE_SIDEBAR });
   };
@@ -115,6 +118,7 @@ const AppProvider = ({ children }) => {
         registerUser,
         loginUser,
         logoutUser,
+        updateUser,
         toggleSidebar,
       }}>
       {children}
