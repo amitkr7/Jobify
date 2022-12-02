@@ -61,8 +61,8 @@ const updateJob = async (req, res) => {
 
   // job.position = position;
   // job.company = company;
-
   // await job.save();
+
   res.status(StatusCodes.OK).json({ updatedJob });
 };
 
