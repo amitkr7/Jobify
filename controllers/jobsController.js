@@ -73,7 +73,20 @@ const showStats = async (req, res) => {
     { $group: { _id: '$status', count: { $sum: 1 } } },
   ]);
 
-  res.status(StatusCodes.OK).json({ stats });
+  stats = stats.reduce((acc, curr) => {
+    const { _id: title, count } = curr;
+    acc[title] = count;
+    return acc;
+  }, {});
+
+  const defaultStats = {
+    pending: stats.pending || 0,
+    interview: stats.interview || 0,
+    declined: stats.declined || 0,
+  };
+
+  let monthlyApplications = [];
+  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
 
 export { createJob, getAllJobs, deleteJob, updateJob, showStats };
