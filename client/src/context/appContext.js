@@ -28,6 +28,7 @@ import {
   EDIT_JOB_ERROR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCCESS,
+  CLEAR_FILTERS,
 } from './actions';
 
 import reducer from './reducer';
@@ -223,7 +224,11 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    let url = `/jobs`;
+    const { search, searchStatus, searchType, sort } = state;
+    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`;
+    if (search) {
+      url = url + `&search=${search}`;
+    }
 
     dispatch({ type: GET_JOBS_BEGIN });
 
@@ -300,7 +305,7 @@ const AppProvider = ({ children }) => {
   };
 
   const clearFilters = () => {
-    console.log('Clear Filter');
+    dispatch({ type: 'CLEAR_FILTERS' });
   };
 
   return (

@@ -42,7 +42,7 @@ const SearchContainer = () => {
           {/* search by status */}
           <FormRowSelect
             labelText='status'
-            name='seacrhStatus'
+            name='searchStatus'
             value={searchStatus}
             handleChange={handleSearch}
             list={['all', ...statusOptions]}></FormRowSelect>
