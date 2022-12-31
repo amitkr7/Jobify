@@ -4,7 +4,6 @@ import { UnauthenticatedError } from '../errors/index.js';
 UnauthenticatedError;
 
 const auth = (req, res, next) => {
-  console.log(req.cookies);
   const token = req.cookies.token;
   if (!token) {
     throw new UnauthenticatedError('Authentication Invliad');
